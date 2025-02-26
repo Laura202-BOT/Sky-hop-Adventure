@@ -4,7 +4,7 @@ Project Title: Sky Hop Adventure
 - Nwanebu Laura
 
  Platform:
-- ☐ VR ☐ AR ☐ XR ☑ Other: **2D PC Game (Unity)**
+- ☐ VR ☐ AR ☐ XR ☑ Other: **3D PC Game (Unity)**
 
 Hardware Requirements:
 - Standard PC with Unity installed
