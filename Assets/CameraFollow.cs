@@ -2,13 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraFollows : MonoBehaviour
+public class CameraFollow : MonoBehaviour
 {
-    void OnTriggerEnter(Collider other)
+    public Transform player; // Reference to the Player
+    public Vector3 offset = new Vector3(0, 3, -5); // Default offset
+
+    void Start()
     {
-        if (other.CompareTag("Player"))
+        if (player != null)
         {
-            Destroy(gameObject); // Removes orb when collected
+            offset = transform.position - player.position;
+        }
+    }
+
+    void LateUpdate()
+    {
+        if (player != null)
+        {
+            transform.position = player.position + offset;
         }
     }
 }
