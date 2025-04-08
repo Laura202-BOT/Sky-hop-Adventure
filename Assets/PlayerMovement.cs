@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement; // Needed to restart scene
 using UnityEngine.UI; // Needed for UI
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -20,9 +21,9 @@ public class PlayerMovement : MonoBehaviour
 
     // 🩸 Health System
     public int maxHealth = 3;
-    private int currentHealth;
+    public int currentHealth;
 
-    public Text healthText;
+    public TextMeshProUGUI healthText;
     public ScreenShake screenShake;
 
     void Start()
