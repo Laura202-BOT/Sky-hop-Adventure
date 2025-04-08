@@ -6,9 +6,9 @@ using UnityEngine.UI; // Needed for UI
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float walkSpeed = 5f;
-    public float runSpeed = 10f;
-    public float jumpForce = 5f;
+    public float walkSpeed;
+    public float runSpeed;
+    public float jumpForce;
     private float currentSpeed;
 
     private Rigidbody rb;
