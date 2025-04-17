@@ -70,8 +70,6 @@ public class PlayerMovement : MonoBehaviour
         float inputX = Input.GetAxis("Horizontal");
         float inputZ = Input.GetAxis("Vertical");
         float movementSpeed = new Vector2(inputX, inputZ).magnitude;
-
-        animator.SetFloat("Speed", movementSpeed);
     }
 
     void MovePlayer()
@@ -200,7 +198,13 @@ public class PlayerMovement : MonoBehaviour
         if (healthText != null)
             UpdateHealthUI();
 
-        animator.SetTrigger("die");
+        animator.SetTrigger("Damage");
+
+        if(animator.GetCurrentAnimatorStateInfo(0).IsName("Take_Damage") && !animator.IsInTransition(0))
+        {
+            animator.ResetTrigger("Damage");
+        }
+        
 
         if (currentHealth <= 0)
         {
