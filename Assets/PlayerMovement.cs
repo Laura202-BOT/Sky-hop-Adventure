@@ -10,7 +10,9 @@ public class PlayerMovement : MonoBehaviour
     public float walkSpeed;
     public float runSpeed;
     public float jumpForce;
+    public AudioSource deathSound;
     private float currentSpeed;
+
 
     private Rigidbody rb;
     private bool isGrounded;
@@ -208,6 +210,9 @@ public class PlayerMovement : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            if (deathSound != null)
+                deathSound.Play();
+
             StartCoroutine(RestartSceneAfterDelay());
         }
     }
@@ -219,7 +224,7 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator RestartSceneAfterDelay()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(deathSound.clip.length+0.2f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
