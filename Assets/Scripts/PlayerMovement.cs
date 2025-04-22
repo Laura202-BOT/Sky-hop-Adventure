@@ -25,8 +25,12 @@ public class PlayerMovement : MonoBehaviour
     public int maxHealth = 3;
     public int currentHealth;
 
+    public GameOverUI gameOverUI;
     public TextMeshProUGUI healthText;
+    public TextMeshProUGUI scoreText;
     public ScreenShake screenShake;
+
+    int score;
 
     void Start()
     {
@@ -34,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
         currentSpeed = walkSpeed;
         animator = GetComponent<Animator>();
         currentHealth = maxHealth;
+        score = 0;
 
         if (healthText != null)
             UpdateHealthUI();
@@ -41,7 +46,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("UPDATE IS RUNNING");
         UpdateSpeed();
         MovePlayer();
         HandleJumping();
@@ -63,6 +67,30 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("isRunning", false);
         }
+
+
+        
+
+    }
+
+    private void FixedUpdate()
+    {
+        Vector3 lastPosition = Vector3.zero;
+        float speed = Vector3.Distance(transform.position, lastPosition) / Time.deltaTime;
+        Debug.Log("Speed: " + speed.ToString());
+
+        if (speed > 30000f)
+        {
+            Time.timeScale = 0;
+            speed = 0;
+            currentHealth = 0;
+            UpdateHealthUI();
+            animator.SetTrigger("GameOver");
+            if (deathSound != null)
+                deathSound.Play();
+            gameOverUI.ShowGameOver();
+        }
+        lastPosition = transform.position;
     }
 
     void UpdateSpeed()
@@ -109,6 +137,11 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = true;
             canDoubleJump = false;
             animator.SetBool("isJumping", false);
+            if(other.gameObject.layer == 3)
+            {
+                score++;
+                scoreText.text = "Score: " + score.ToString();
+            }
         }
     }
 
@@ -210,10 +243,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            animator.SetTrigger("GameOver");
             if (deathSound != null)
                 deathSound.Play();
+                gameOverUI.ShowGameOver();
 
-            StartCoroutine(RestartSceneAfterDelay());
+            //StartCoroutine(RestartSceneAfterDelay());
         }
     }
 

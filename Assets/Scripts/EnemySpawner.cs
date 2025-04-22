@@ -10,7 +10,7 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("SpawnEnemy", 0f, Random.Range(1.0f,5.0f));
+        InvokeRepeating("SpawnEnemy", 0f, Random.Range(5.0f,10.0f));
     }
 
     void SpawnEnemy()

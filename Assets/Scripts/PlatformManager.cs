@@ -22,7 +22,7 @@ public class PlatformManager : MonoBehaviour
 
     void SpawnPlatform()
     {
-        Instantiate(prefab, SpawnPosition, Quaternion.identity);
+        Instantiate(prefab, SpawnPosition, prefab.transform.rotation);
         Offset = new Vector3(Random.Range(-8.0f, 8.0f), Random.Range(1.0f, 6.0f), 4.5f);
         SpawnPosition += Offset;
     }
