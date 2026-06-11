@@ -1,7 +1,7 @@
-Project Title: Sky Hop Adventure
+Title: Sky Hop Adventure
 
- Group Members:
-- Nwanebu Laura
+ Developer 
+- Nwanebu Laura Udochukwu
 
  Platform:
 - ☐ VR ☐ AR ☐ XR ☑ Other: **3D PC Game (Unity)**
